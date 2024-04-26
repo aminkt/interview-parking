@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./:/var/www/html:delegated

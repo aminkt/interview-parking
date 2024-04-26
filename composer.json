@@ -1,0 +1,16 @@
+{
+    "name": "temperworks/codechallenge",
+    "description": "The code challenge starter for Temper.works",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Temperworks\\Codechallenge\\": "src/"
+        }
+    }
+}
