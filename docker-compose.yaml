@@ -5,4 +5,4 @@ services:
     build:
       dockerfile: ./docker/Dockerfile
     volumes:
-      - ./:/var/www/html:delegated
+      - ./:/app:delegated #Because application is using cli, I prefer to install it somewhere else rather than /var/www/html
