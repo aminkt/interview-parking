@@ -23,7 +23,7 @@ class FloorEntity implements IEntity
         $this->currentCapacity = $this->capacity;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }

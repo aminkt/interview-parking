@@ -13,10 +13,6 @@ abstract class AInMemoryRepo implements IRepository
 
     public abstract static function getAggregateEntityName(): string;
 
-    public function getAggregateEntities(): array {
-        return [static::getAggregateEntityName()];
-    }
-
     public function getAll(): array
     {
         return $this->entities;
@@ -47,8 +43,8 @@ abstract class AInMemoryRepo implements IRepository
     {
         $changedIds = [];
         foreach ($entities as $entity) {
-            if (!in_array($entity::class, $this->getAggregateEntities())) {
-                throw new \Exception(static::class . " Can not handle " . $entity::class . ". Valid entities are " . implode(',', $this->getAggregateEntities()));
+            if ($entity::class !== static::getAggregateEntityName()) {
+                throw new \Exception(static::class . " Can not handle " . $entity::class . ". Valid entity is " . static::getAggregateEntityName());
             }
             if ($entity->getId() == null) {
                 $id = $this->getNextId();

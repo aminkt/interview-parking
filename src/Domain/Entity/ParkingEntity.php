@@ -13,12 +13,12 @@ class ParkingEntity implements IEntity
      * @param FloorEntity[] $floorEntities
      */
     public function __construct(
-        private ?string $id = null,
+        private ?string $id,
         private array $floorEntities = []
     )
     {}
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }

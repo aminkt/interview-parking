@@ -2,7 +2,7 @@
 
 namespace Temperworks\Codechallenge\Domain\Exception;
 
-class NoParkingSpotLeftException extends \Exception
+class NoParkingSpotLeftException extends ValidationException
 {
 
 }
