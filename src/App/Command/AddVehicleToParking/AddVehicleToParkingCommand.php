@@ -27,7 +27,7 @@ class AddVehicleToParkingCommand extends ACommand
         }
         if (empty($this->vehicleNumberPlate)) {
             $errors[] = new ValidationException(
-                "VehicleNumberPlate id can not be empty.",
+                "VehicleNumberPlate can not be empty.",
                 'vehicleNumberPlate',
                 $this->vehicleNumberPlate
             );

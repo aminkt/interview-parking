@@ -8,7 +8,7 @@ use Temperworks\Codechallenge\Domain\Exception\ValidationException;
 
 class TakeOutVehicleFromParkingCommandTest extends TestCase
 {
-    function test_CreateTakeOutVehicleFromFloorCommand_WhenInputIsCorrect_ThenNoErrorExpected()
+    function test_TakeOutVehicleFromParkingCommand_WhenInputIsCorrect_ThenNoErrorExpected()
     {
         $command = TakeOutVehicleFromParkingCommand::fromArray([
             'parkingId' => '123',
@@ -19,7 +19,7 @@ class TakeOutVehicleFromParkingCommandTest extends TestCase
         $this->assertEquals($command->vehicleNumberPlate, '123we43');
     }
 
-    function test_CreateTakeOutVehicleFromFloorCommand_WhenParkingIdIsEmpty_ThenThrowValidationException()
+    function test_TakeOutVehicleFromParkingCommand_WhenParkingIdIsEmpty_ThenThrowValidationException()
     {
         $this->expectException(ValidationException::class);
 
@@ -29,7 +29,7 @@ class TakeOutVehicleFromParkingCommandTest extends TestCase
         ]);
     }
 
-    function test_CreateTakeOutVehicleFromFloorCommand_WhenVehicleNumberPlateIsWrong_ThenThrowValidationException()
+    function test_TakeOutVehicleFromParkingCommand_WhenVehicleNumberPlateIsWrong_ThenThrowValidationException()
     {
         $this->expectException(ValidationException::class);
 
