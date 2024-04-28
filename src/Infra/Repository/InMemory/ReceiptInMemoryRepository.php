@@ -29,14 +29,22 @@ class ReceiptInMemoryRepository extends AInMemoryRepo implements IReceiptReposit
     {
         foreach ($this->getAll() as $entity) {
             /** @var ReceiptEntity $entity */
-            $condition = $entity->getParkingId() === $parkingId
-                && $entity->getVehicleNumberPlate() === $numberPlate
-                && $entity->getTakeOutAt() === null;
-
-            if ($condition) {
+            if ($entity->getParkingId() === $parkingId && $entity->getVehicleNumberPlate() === $numberPlate && $entity->getTakeOutAt() == null) {
                 return $entity;
             }
         }
         throw new EntityNotFoundException("Can not find open parking receipt for parking {$parkingId} and numberPlate $numberPlate}");
+    }
+
+    public function findOpenReceiptByParkingIdGroupByFloorNumber(string $parkingId): array
+    {
+        $result = [];
+        foreach ($this->getAll() as $entity) {
+            /** @var ReceiptEntity $entity */
+            if ($entity->getParkingId() === $parkingId && $entity->getTakeOutAt() == null) {
+                $result[$entity->getFloorNumber()][] = $entity;
+            }
+        }
+        return $result;
     }
 }

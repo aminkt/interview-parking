@@ -84,4 +84,12 @@ class ParkingEntity implements IEntity
         }
         return $result;
     }
+
+    /**
+     * @return FloorEntity[]
+     */
+    public function getFloorEntities(): array
+    {
+        return $this->floorEntities;
+    }
 }

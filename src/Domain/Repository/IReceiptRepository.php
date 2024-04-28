@@ -19,5 +19,11 @@ interface IReceiptRepository extends IRepository
      */
     public function findAllReceiptByVehicleNumberPlate(string $numberPlate): array;
 
+    /**
+     * @param string $parkingId
+     * @return ReceiptEntity[][]
+     */
+    public function findOpenReceiptByParkingIdGroupByFloorNumber(string $parkingId): array;
+
     public function findOpenReceiptByParkingIdAndVehicleNumberPlate(string $parkingId, string $numberPlate): ReceiptEntity;
 }
