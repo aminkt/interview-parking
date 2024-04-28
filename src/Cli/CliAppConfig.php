@@ -2,7 +2,7 @@
 
 namespace Temperworks\Codechallenge\Cli;
 
-class AppConfig
+class CliAppConfig
 {
     public ?string $parkingId;
 

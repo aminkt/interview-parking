@@ -21,9 +21,9 @@ final class DC
         return$dependency;
     }
 
-    public static function AppConfig(): AppConfig
+    public static function AppConfig(): CliAppConfig
     {
-        return self::getOrCreateDependency(AppConfig::class);
+        return self::getOrCreateDependency(CliAppConfig::class);
     }
 
     public static function parkingRepository(): IParkingRepository
