@@ -1,12 +1,11 @@
 <?php
 
-namespace Temperworks\Codechallenge\App\Command\TakeOutVehicleFromFloor;
+namespace Temperworks\Codechallenge\App\Command\TakeOutVehicleFromParking;
 
 use Temperworks\Codechallenge\App\Command\ACommand;
 use Temperworks\Codechallenge\Domain\Exception\ValidationException;
-use Temperworks\Codechallenge\Domain\ValueObject\EVehicleType;
 
-class TakeOutVehicleFromFloorCommand extends ACommand
+class TakeOutVehicleFromParkingCommand extends ACommand
 {
     public function __construct(
         public readonly string $parkingId,

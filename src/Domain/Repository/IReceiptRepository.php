@@ -15,7 +15,7 @@ interface IReceiptRepository extends IRepository
     /**
      * Return all receipt for specific vehicle
      * @param string $numberPlate
-     * @return array
+     * @return ReceiptEntity[]
      */
     public function findAllReceiptByVehicleNumberPlate(string $numberPlate): array;
 

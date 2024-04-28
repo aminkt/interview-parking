@@ -10,6 +10,7 @@ abstract class AInMemoryRepo implements IRepository
 {
     /** @var IEntity[] */
     protected array $entities = [];
+    private int $lastIdGenerated = 100;
 
     public abstract static function getAggregateEntityName(): string;
 
@@ -36,7 +37,7 @@ abstract class AInMemoryRepo implements IRepository
 
     private function getNextId(): string
     {
-        return vsprintf('%s%s-%s-4000-8%.3s-%s%s%s0',str_split(dechex( microtime(true) * 1000 ) . bin2hex( random_bytes(8) ),4));
+        return ++$this->lastIdGenerated;
     }
 
     public function saveAll(IEntity ...$entities): array

@@ -1,16 +1,16 @@
 <?php
 
-namespace Temperworks\Codechallenge\Test\Unit\App\Command\TakeOutVehicleFromFloor;
+namespace Temperworks\Codechallenge\Test\Unit\App\Command\TakeOutVehicleFromParking;
 
 use PHPUnit\Framework\TestCase;
-use Temperworks\Codechallenge\App\Command\TakeOutVehicleFromFloor\TakeOutVehicleFromFloorCommand;
+use Temperworks\Codechallenge\App\Command\TakeOutVehicleFromParking\TakeOutVehicleFromParkingCommand;
 use Temperworks\Codechallenge\Domain\Exception\ValidationException;
 
-class TakeOutVehicleFromFloorCommandTest extends TestCase
+class TakeOutVehicleFromParkingCommandTest extends TestCase
 {
     function test_CreateTakeOutVehicleFromFloorCommand_WhenInputIsCorrect_ThenNoErrorExpected()
     {
-        $command = TakeOutVehicleFromFloorCommand::fromArray([
+        $command = TakeOutVehicleFromParkingCommand::fromArray([
             'parkingId' => '123',
             'vehicleNumberPlate' => '123we43',
         ]);
@@ -23,7 +23,7 @@ class TakeOutVehicleFromFloorCommandTest extends TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $command = TakeOutVehicleFromFloorCommand::fromArray([
+        $command = TakeOutVehicleFromParkingCommand::fromArray([
             'parkingId' => '',
             'vehicleNumberPlate' => '123we43',
         ]);
@@ -33,7 +33,7 @@ class TakeOutVehicleFromFloorCommandTest extends TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $command = TakeOutVehicleFromFloorCommand::fromArray([
+        $command = TakeOutVehicleFromParkingCommand::fromArray([
             'parkingId' => '123',
             'vehicleNumberPlate' => '',
         ]);

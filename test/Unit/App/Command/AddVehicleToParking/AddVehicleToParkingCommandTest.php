@@ -4,13 +4,8 @@ namespace Temperworks\Codechallenge\Test\Unit\App\Command\AddVehicleToParking;
 
 use PHPUnit\Framework\TestCase;
 use Temperworks\Codechallenge\App\Command\AddVehicleToParking\AddVehicleToParkingCommand;
-use Temperworks\Codechallenge\App\Command\AddVehicleToParking\AddVehicleToParkingCommandHandler;
-use Temperworks\Codechallenge\Domain\Entity\FloorEntity;
-use Temperworks\Codechallenge\Domain\Entity\ParkingEntity;
-use Temperworks\Codechallenge\Domain\Exception\NoParkingSpotLeftException;
 use Temperworks\Codechallenge\Domain\Exception\ValidationException;
 use Temperworks\Codechallenge\Domain\ValueObject\EVehicleType;
-use Temperworks\Codechallenge\Infra\Repository\InMemory\ParkingInMemoryRepository;
 
 class AddVehicleToParkingCommandTest extends TestCase
 {
