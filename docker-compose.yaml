@@ -4,5 +4,7 @@ services:
   app:
     build:
       dockerfile: ./docker/Dockerfile
+    env_file:
+      - .env
     volumes:
       - ./:/app:delegated #Because application is using cli, I prefer to install it somewhere else rather than /var/www/html

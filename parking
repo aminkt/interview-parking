@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+
+<?php
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
+
+require __DIR__ . '/vendor/autoload.php';
+
+$app = new \Temperworks\Codechallenge\Cli\CliApplication();
+$app->registerCliCommands([
+    \Temperworks\Codechallenge\Cli\Command\InstallCliCommand::class,
+    \Temperworks\Codechallenge\Cli\Command\ParkCliCommand::class,
+    \Temperworks\Codechallenge\Cli\Command\TakeOutCliCommand::class,
+    \Temperworks\Codechallenge\Cli\Command\TrackCliCommand::class,
+    \Temperworks\Codechallenge\Cli\Command\StatusCliCommand::class,
+    \Temperworks\Codechallenge\Cli\Command\VehicleTypesCliCommand::class
+])->run($argv);

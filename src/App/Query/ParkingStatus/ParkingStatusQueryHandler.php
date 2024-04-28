@@ -15,20 +15,20 @@ class ParkingStatusQueryHandler extends AQueryHandler
         private readonly IReceiptRepository $receiptRepository
     ) {}
 
-    public function execute(ParkingStatusQuery|AQuery $query = null)
+    public function execute(ParkingStatusQuery|AQuery $query)
     {
         $parkingEntity = $this->parkingRepo->getById($query->parkingId);
         $receiptEntitiesGroupByFloorNumber = $this->receiptRepository->findOpenReceiptByParkingIdGroupByFloorNumber($query->parkingId);
         $floors = [];
         $totalVehiclesInParkCount = 0;
         foreach ($parkingEntity->getFloorEntities() as $floorNumber => $floorEntity) {
-            $totalVehiclesInParkCount += count($receiptEntitiesGroupByFloorNumber[$floorNumber]);
+            $totalVehiclesInParkCount += count($receiptEntitiesGroupByFloorNumber[$floorNumber] ?? []);
             $floors[] = [
                 'name' => $this->getFloorName($floorNumber),
                 'totalCapacity' => $floorEntity->getTotalCapacity(),
                 'remainingCapacity' => $floorEntity->getCurrentCapacity(),
-                'vehiclesInParkCount' => count($receiptEntitiesGroupByFloorNumber[$floorNumber]),
-                'vehicleNumberPlates' => $this->getVehicleNumberPlatesInFloor($receiptEntitiesGroupByFloorNumber[$floorNumber])
+                'vehiclesInParkCount' => count($receiptEntitiesGroupByFloorNumber[$floorNumber] ?? []),
+                'vehicleNumberPlates' => $this->getVehicleNumberPlatesInFloor($receiptEntitiesGroupByFloorNumber[$floorNumber] ?? [])
             ];
         }
 

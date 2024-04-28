@@ -7,11 +7,11 @@ COPY . /app
 # Update package list
 RUN apk update
 RUN apk upgrade -q -U -a
-RUN apk install bash
+RUN apk add bash
 
 RUN curl -s https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     composer self-update
 
 # And also dependencies should be installed after copying files.
-Run composer install
+Run composer update

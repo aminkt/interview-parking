@@ -10,7 +10,7 @@ abstract class AInMemoryRepo implements IRepository
 {
     /** @var IEntity[] */
     protected array $entities = [];
-    private int $lastIdGenerated = 100;
+    protected int $lastIdGenerated = 100;
 
     public abstract static function getAggregateEntityName(): string;
 
@@ -59,7 +59,8 @@ abstract class AInMemoryRepo implements IRepository
 
     public function save(IEntity $entity): IEntity
     {
-        return $this->saveAll($entity)[$entity->getId()];
+        $res = $this->saveAll($entity);
+        return array_pop($res);
     }
 
     public function delete(string ...$ids): void

@@ -3,6 +3,7 @@
 namespace Temperworks\Codechallenge\Test\Unit\App\Query\GetVehicleTypesList;
 
 use PHPUnit\Framework\TestCase;
+use Temperworks\Codechallenge\App\Query\GetVehicleTypesList\GetVehicleTypesListQuery;
 use Temperworks\Codechallenge\App\Query\GetVehicleTypesList\GetVehicleTypesListQueryHandler;
 use Temperworks\Codechallenge\Domain\ValueObject\EVehicleType;
 
@@ -17,7 +18,7 @@ class GetVehicleTypesListQueryHandlerTest extends TestCase
 
     function test_GetVehicleTypes_WhenQueryIt_ThenReturnListOfVehicleTypes()
     {
-        $items = $this->queryHandler->execute();
+        $items = $this->queryHandler->execute(new GetVehicleTypesListQuery());
         $this->assertCount(3, $items);
 
         $this->assertContains([

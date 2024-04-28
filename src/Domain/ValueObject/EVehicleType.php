@@ -2,11 +2,11 @@
 
 namespace Temperworks\Codechallenge\Domain\ValueObject;
 
-enum EVehicleType
+enum EVehicleType: string
 {
-    case Van;
-    case Car;
-    case Motorcycle;
+    case Van = "Van";
+    case Car = "Car";
+    case Motorcycle = "Motorcycle";
 
     private const VehicleRequiredSpace = [
         EVehicleType::Motorcycle->name => 0.5,

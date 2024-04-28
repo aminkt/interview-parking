@@ -11,7 +11,7 @@ class GetVehicleTypesListQueryHandler extends AQueryHandler
 {
 
     // This is a good use case for queries which not support query parameters.
-    public function execute(?AQuery $query = null)
+    public function execute(GetVehicleTypesListQuery|AQuery $query)
     {
         $types = [EVehicleType::Motorcycle, EVehicleType::Car, EVehicleType::Van];
         $response = [];

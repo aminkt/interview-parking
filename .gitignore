@@ -1,4 +1,5 @@
 /vendor
+/runtime
 .phpunit.result.cache
 .idea
 .DS_Store

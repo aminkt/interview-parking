@@ -15,7 +15,7 @@ class GetVehicleReceiptListQueryHandler extends AQueryHandler
     {
     }
 
-    public function execute(GetVehicleReceiptListQuery|AQuery $query = null)
+    public function execute(GetVehicleReceiptListQuery|AQuery $query)
     {
         is_null($query) && throw new ValidationException("Query is required!");
         $entities = $this->receiptRepository->findAllReceiptByVehicleNumberPlate($query->vehicleNumberPlate);
