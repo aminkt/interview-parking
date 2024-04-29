@@ -4,6 +4,8 @@ namespace Temperworks\Codechallenge\Cli;
 
 use InvalidArgumentException;
 use Temperworks\Codechallenge\Cli\Command\ACliCommand;
+use Temperworks\Codechallenge\Domain\Exception\EntityNotFoundException;
+use Temperworks\Codechallenge\Domain\Exception\ValidationException;
 
 class CliApplication
 {
@@ -45,7 +47,11 @@ class CliApplication
                 $cliCommand = new $cliCommandClass();
                 $params = $this->fetchParams($cliCommand, $arguments);
                 ob_start();
-                $cliCommand->execute($params);
+                try {
+                    $cliCommand->execute($params);
+                } catch (ValidationException|EntityNotFoundException $exception) {
+                    print($exception->getMessage() . "\n");
+                }
                 flush();
                 ob_flush();
             }

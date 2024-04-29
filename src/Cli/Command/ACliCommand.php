@@ -21,8 +21,11 @@ abstract class ACliCommand
 
     protected function print(string $message)
     {
-        print($message . "\n");
-        flush();
-        ob_flush();
+        print($message);
+    }
+
+    protected function drawHorizontalLine() {
+        $line = str_repeat('-', 100);
+        print($line . PHP_EOL);
     }
 }

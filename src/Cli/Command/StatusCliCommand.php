@@ -24,6 +24,21 @@ class StatusCliCommand extends ACliCommand
         $handler = new ParkingStatusQueryHandler(DC::parkingRepository(), DC::receiptRepository());
 
         $response = $handler->execute(new ParkingStatusQuery(DC::AppConfig()->parkingId));
-        var_dump($response);
+        $this->ptintNewLine("parkingId: {$response['parkingId']}");
+        $this->ptintNewLine("totalCapacity: {$response['totalCapacity']}");
+        $this->ptintNewLine("remainingCapacity: {$response['remainingCapacity']}");
+        $this->ptintNewLine("floorCount: {$response['floorCount']}");
+        $this->ptintNewLine("vehiclesInParkCount: {$response['vehiclesInParkCount']}");
+        $this->ptintNewLine("\nfloors: ");
+        $this->drawHorizontalLine();
+
+        $mask = "|%15s |%15s |%20s |%20s |%30s |\n";
+        printf($mask, ...['name', 'totalCapacity', 'remainingCapacity', 'vehiclesInParkCount', 'vehicleNumberPlates']);
+        foreach ($response['floors'] as $floor) {
+            $numberPlates = array_pop($floor);
+            $values = array_values($floor);
+            $values[] = implode(', ', $numberPlates);
+            printf($mask, ...$values);
+        }
     }
 }

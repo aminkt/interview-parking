@@ -20,7 +20,9 @@ class VehicleTypesCliCommand extends ACliCommand
     public function execute(array $parameters)
     {
         $handler = new GetVehicleTypesListQueryHandler();
-        $response = $handler->execute(new GetVehicleTypesListQuery());
-        var_dump($response);
+        $items = $handler->execute(new GetVehicleTypesListQuery());
+        foreach ($items as $item) {
+            $this->ptintNewLine("-{$item['name']}: Take {$item['requiredSpace']} space");
+        }
     }
 }

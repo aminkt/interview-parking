@@ -34,7 +34,12 @@ class TrackCliCommand extends ACliCommand
     {
         $handler = new GetVehicleReceiptListQueryHandler(DC::receiptRepository());
 
-        $handler->execute(GetVehicleReceiptListQuery::fromArray($parameters));
-        $this->ptintNewLine("Good bye!");
+        $items = $handler->execute(GetVehicleReceiptListQuery::fromArray($parameters));
+        $headers = ['receiptId', 'parkingId', 'floor', 'isInPark', 'parkTime', 'parkAt', 'takeOutAt'];
+        $mask = "|%10s |%10s |%10s |%10s |%20s |%30s |%30s |\n";
+        printf($mask, ...$headers);
+        foreach ($items as $item) {
+            printf($mask, ...array_values($item));
+        }
     }
 }
