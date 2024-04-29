@@ -1,6 +1,6 @@
 FROM php:8.2-fpm-alpine
 
-# These lines are required to build application to use
+# These lines are required to build application to be able to use it without repository code.
 WORKDIR /app
 COPY . /app
 
