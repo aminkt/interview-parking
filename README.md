@@ -23,8 +23,8 @@ for the first time. This means that you don't have to worry about any manual set
 
 Furthermore, when you run the `docker compose up` command for the first time, the `composer update` command will be
 executed in the docker file. This enables us to build an image and push it to the docker registry if required, so you
-don't have to clone the project. If this is the case, you can simply run the command `docker run -it <image_name>` to
-start using the application.
+don't have to clone the project. If this is the case, you can simply run the command `docker run app <image_name>` to
+run application and then `docker exec app ./parking status` to use application.
 
 ## Run Application
 
