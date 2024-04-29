@@ -103,6 +103,7 @@ class CliApplication
                 }
             }
             print("\t#sample: " . implode(' ', $sampleCommand) . "\n");
+            $i++;
         }
         flush();
         ob_flush();
