@@ -16,6 +16,8 @@ Docker and Docker Compose installed, you can proceed with the installation.
 
 1. Clone the project on your local machine and navigate to cloned repository directory.
 2. Run `docker compose up -d`
+3. When running the application for the first time, You may need restart app container to load environment variables created by the installation script.
+
 
 When you run the command `composer install`, all dependencies and libraries that are required for the project will be
 installed automatically. Additionally, there is a composer `post-install-cmd` command in place which sets up the application
