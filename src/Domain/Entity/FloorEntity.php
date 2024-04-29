@@ -3,6 +3,7 @@
 namespace Temperworks\Codechallenge\Domain\Entity;
 
 use Temperworks\Codechallenge\Domain\Exception\NoParkingSpotLeftException;
+use Temperworks\Codechallenge\Domain\Exception\ValidationException;
 use Temperworks\Codechallenge\Domain\ValueObject\EVehicleType;
 
 class FloorEntity implements IEntity
@@ -59,6 +60,10 @@ class FloorEntity implements IEntity
 
     public function takeOutVehicle(EVehicleType $vehicleType)
     {
+        if ($this->getCurrentCapacity() + $vehicleType->requiredSpace() > $this->getTotalCapacity()) {
+            throw new ValidationException("Invalid operation. can not take out car because remaining space will not mach.");
+        }
+
         $this->currentCapacity += $vehicleType->requiredSpace();
     }
 }

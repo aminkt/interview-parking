@@ -1,0 +1,1 @@
+Unit tests are necessary for value objects to ensure their safety. However, Enums, especially simple ones, are protected by the language and do not require testing.
