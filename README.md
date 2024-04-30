@@ -26,7 +26,7 @@ for the first time. This means that you don't have to worry about any manual set
 Furthermore, when you run the `docker compose up` command for the first time, the `composer update` command will be
 executed in the docker file. This enables us to build an image and push it to the docker registry if required, so you
 don't have to clone the project. If this is the case, you can simply run the command `docker run app <image_name>` to
-run application and then `docker exec app ./parking status` to use application.
+run application and then `docker exec app ./parking help` to use application.
 
 ## Run Application
 
@@ -96,7 +96,7 @@ I have noted down the following domain rules for the application:
 
 ## Architecture
 
-I am utilizing a clean architecture, Domain-Driven Design (DDD) approach in conjunction with the Command Query
+I am utilizing Clean architecture and Domain-Driven Design (DDD) approaches in conjunction with the Command Query
 Pattern to design the application. While other approaches such as Model-View-Controller (MVC) could also be used, I
 decided to use this architecture for the purpose of this interview task.
 
@@ -119,7 +119,7 @@ numerous benefits which are listed below:
     * Commands: Commands represent actions that mutate the state of the application. By separating command processing
       from query processing, you can focus on modeling and handling commands without worrying about the complexities of
       querying data.
-      Queries: Queries represent requests for data retrieval. Separating query handling allows you to optimize query
+    * Queries: Queries represent requests for data retrieval. Separating query handling allows you to optimize query
       performance and scalability independently from command processing.
     * Scalability: Independent Scaling: Since commands and queries are separate concerns, you can scale their processing
       independently based on the application's needs. For example, you can scale command processing to handle high write
@@ -169,9 +169,6 @@ numerous benefits which are listed below:
    switch or upgrade frameworks.
 4. Flexibility: The architecture accommodates changes in requirements or technology stack without significant rework.
 
-> Note: Due to implementing the Domain-Driven Design approach, I have removed the use case concept from the clean
-> architecture and replaced it with commands and DDD entity design principles.
-
 ---
 
 ### Application Layers
@@ -181,33 +178,36 @@ layers below it. They can access the layers below them. However, the Domain laye
 does not depend on other layers. With the help of the Dependency Inversion Principle, the dependencies of the Domain
 layer have been inverted to make it independent.
 
-1. **CLI**: This is the presentation layer that enables us to interact with the application using a shell.
-2. **APP**: This is the application logic that uses command queries.
-3. **Infra**: This is the infrastructure layer that is responsible for implementing domain interfaces and dependencies.
-   Repositories and queue implementations can go here.
+1. **Cli**: This is the presentation layer that enables us to interact with the application using a shell.
+2. **Infra**: This is the infrastructure layer that is responsible for implementing domain and application interfaces and dependencies.
+      Repositories and queue implementations can go here.
+3. **App**: This is the application logic that uses command/query pattern.
 4. **Domain**: This is the layer that contains the business domain logics.
+
+> PHP does not support namespace visibility, which can cause problems for a team trying to work with a layered
+> architecture. To ensure that architectural dependency limits are applied, we can use PHPCS or write a script in our CI
+> pipeline to find any issues that violate dependency rules.
+
+### Test structure
 
 Please take note that there is a folder named `Unit` in the `test` directory. This folder contains unit tests and is
 named this way to separate them from other kinds of tests like integration tests. Inside the `Unit` directory, you will
 see the `src` directory pattern, which makes it easier to find where you should write tests for each class if required.
 You may also find some comments in different directories to guide you on why I ignore some unit tests.
 
-> In real projects, By using this directory pattern, I will write a script to check if all tests are written in a CI
+> In real projects, By using this directory pattern for tests, I will write a script to check if all tests are written in a CI
 > pipeline. This is helpful for code reviews.
 
-> PHP does not support namespace visibility, which can cause problems for a team trying to work with a layered
-> architecture. To ensure that architectural dependency limits are applied, we can use PHPCS or write a script in our CI
-> pipeline to find any issues that violate dependency rules.
+### Naming conventions
 
-> I follow the below naming conventions:
-> 1. **E**PascalCase for enums
-> 2. **A**PascalCase for Abstract classes
-> 3. **I**PascalCase for Interfaces
-> 4. PascalCase for concrete classes
-> 5. PHP Standards Recommendations (for namespaces, properties, methods, etc.)
+I follow the below naming conventions:
+1. **E**PascalCase for enums
+2. **A**PascalCase for Abstract classes
+3. **I**PascalCase for Interfaces
+4. PascalCase for concrete classes
+5. PHP Standards Recommendations (for namespaces, properties, methods, etc.)
 
 > There are some comments in the code that describe additional details.
-
 
 Hey, thanks a bunch for taking the time to read this document! :)
 
