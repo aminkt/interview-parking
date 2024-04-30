@@ -32,12 +32,12 @@ class ParkCliCommand extends ACliCommand
             '-t' => [
                 'isRequired' => true,
                 'paramName' => 'vehicleType',
-                'sample' => "-p=Van"
+                'sample' => "-t=Van"
             ],
             '-f' => [
                 'isRequired' => false,
                 'paramName' => 'floorNumber',
-                'sample' => "-p=0"
+                'sample' => "-f=0"
             ]
         ];
     }

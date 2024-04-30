@@ -44,7 +44,7 @@ Available Commands:
                 -p      [required] vehicleNumberPlate
                 -t      [required] vehicleType
                 -f      [optional] floorNumber
-        #sample: ./parking park -p=43rer45 -p=Van -p=0
+        #sample: ./parking park -p=43rer45 -t=Van -f=0
 3. take-out: Take out car from the parking. 
         Arguments:
                 -p      [required] vehicleNumberPlate
